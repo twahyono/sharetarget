@@ -5,6 +5,9 @@ export default function Target() {
     console.log(router.query);
     return(
         <>
+        <p>{router.query.title}</p>
+        <p>{router.query.text}</p>
+        <p>{router.query.url}</p>
         </>
     )
 }

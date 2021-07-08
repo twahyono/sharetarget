@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Duit Lite - Di luar jaringan</title>
+
+    <!-- inline the webpage's stylesheet -->
+    <style>
+      body {
+        font-family: "Roboto", helvetica, arial, sans-serif;
+        text-align: center;
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        margin: 30vh auto 0;
+      }
+
+      h1 {
+        font-style: italic;
+        color: #373fff;
+      }
+
+      p {
+        margin-block: 1rem;
+        line-height: 1.5;
+      }
+
+      button {
+        display: block;
+        margin: 0 auto;
+        border: 1px solid #148558;
+        color: #148558;
+        border-radius: 7px;
+        background: none;
+        padding: 5px 50px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <p><img src="/icons/icon-512x512.png" /></p>
+    <p>Kamu sedang luring<br />Tekan tombol di bawah untuk memuat ulang.</p>
+    <button type="button">Muat ulang</button>
+
+    <!-- inline the webpage's javascript file -->
+    <script>
+      document.querySelector("button").addEventListener("click", () => {
+        window.location.reload();
+      });
+    </script>
+  </body>
+</html>

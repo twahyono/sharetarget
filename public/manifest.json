@@ -1,6 +1,6 @@
 {
-  "name": "Next.JS Progressive Web App",
-  "short_name": "Next PWA",
+  "name": "Share Target App",
+  "short_name": "Share Target",
   "theme_color": "#ffffff",
   "background_color": "#004740",
   "display": "fullscreen",
@@ -51,12 +51,19 @@
   ],
   "splash_pages": null,
   "share_target": {
-    "action": "/target/",
-    "method": "GET",
+    "action": "/sharefiles",
+    "method": "POST",
+    "enctype": "multipart/form-data",
     "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
+      "title": "name",
+      "text": "description",
+      "url": "link",
+      "files": [
+        {
+          "name": "file",
+          "accept": "image/*"
+        }
+      ]
     }
   }
 }
