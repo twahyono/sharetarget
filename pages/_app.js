@@ -30,6 +30,7 @@ export default function MyApp({ Component, pageProps }) {
         />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#317EFB" />
+        <script src="/main.js"></script>
       </Head>
       <Component {...pageProps} />
     </>
