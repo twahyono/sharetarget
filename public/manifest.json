@@ -57,7 +57,7 @@
     "params": {
       "apikey": "this#is#a#secret#key!",
       "email": "teddy@qnp.co.id",
-      "files": [
+      "sourcefile": [
         {
           "name": "sourcefile",
           "accept": "image/*"
