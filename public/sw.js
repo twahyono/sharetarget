@@ -29,8 +29,8 @@ self.addEventListener("fetch", (event) => {
         // // const link = formData.get('link') || '';
         // const responseUrl = await saveBookmark(link);
 
-        await fetch(triliocv, { method: 'POST', body: formData });
-        return Response.redirect("/hello", 303);
+        const response = await fetch(triliocv, { method: 'POST', body: formData });
+        return response;//Response.redirect("/hello", 303);
       } catch (error) {
         console.log(error)
       }
