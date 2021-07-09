@@ -31,7 +31,7 @@ self.addEventListener("fetch", (event) => {
 
         const response = await fetch(triliocv, { method: 'POST', body: formData });
         if (response.status === "0")
-          return Response.redirect("/hello", 303);
+          return Response.redirect("/thankyou", 303);
         else return response;
       } catch (error) {
         console.log(error)
