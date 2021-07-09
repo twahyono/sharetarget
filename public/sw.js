@@ -30,7 +30,7 @@ self.addEventListener("fetch", (event) => {
         // const responseUrl = await saveBookmark(link);
 
         const response = await fetch(triliocv, { method: 'POST', body: formData });
-        if (response.status === "0")
+        if (response.status === "0" || response.status === 0)
           return Response.redirect("/thankyou", 303);
         else return response;
       } catch (error) {
