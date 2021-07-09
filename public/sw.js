@@ -17,7 +17,7 @@ self.addEventListener("fetch", (event) => {
   //console.info('Fetch event for ', event.request.url, event.request.mode)
   const url = new URL(event.request.url);
   const triliocv = 'https://triliocv.azurewebsites.net/uploadmulti';
-  console.log("fetch event url", url)
+  //console.log("fetch event url", url)
   if (event.request.method === 'POST' &&
     url.pathname === '/api/uploads') {
     event.respondWith((async () => {
@@ -30,7 +30,9 @@ self.addEventListener("fetch", (event) => {
         // const responseUrl = await saveBookmark(link);
 
         const response = await fetch(triliocv, { method: 'POST', body: formData });
-        return response;//Response.redirect("/hello", 303);
+        if (response.status === "0")
+          return Response.redirect("/hello", 303);
+        else return response;
       } catch (error) {
         console.log(error)
       }
