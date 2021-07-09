@@ -1,6 +1,7 @@
 importScripts("localforage.min.js");
 const CACHE_NAME = "cache-v1.3";
 const OFFLINE_URL = "offline.html";
+const OFFLINE_URL_EN = "offline.html";
 const CACHED_ASSETS = [
 
 ];
@@ -20,14 +21,15 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method === 'POST' &&
     url.pathname === '/api/uploads') {
     event.respondWith((async () => {
-      let formData = await event.request.formData();
-      await localforage.setItem("FORMDATA",formData);
-      formData.append('apikey','this#is#a#secret#key!')
-      // formData.append('email','teddy@qnp.co.id')
-      // // const link = formData.get('link') || '';
-      // const responseUrl = await saveBookmark(link);
       try {
-        await fetch(triliocv,{method:'POST',body:formData});
+        let formData = await event.request.formData();
+        //await localforage.setItem("FORMDATA",formData);
+        formData.append('apikey', 'this#is#a#secret#key!')
+        // formData.append('email','teddy@qnp.co.id')
+        // // const link = formData.get('link') || '';
+        // const responseUrl = await saveBookmark(link);
+
+        await fetch(triliocv, { method: 'POST', body: formData });
         return Response.redirect("/hello", 303);
       } catch (error) {
         console.log(error)
