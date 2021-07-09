@@ -15,14 +15,14 @@ self.addEventListener("install", function (event) {
 self.addEventListener("fetch", (event) => {
   //console.info('Fetch event for ', event.request.url, event.request.mode)
   const url = new URL(event.request.url);
-  const triliocv = 'https://triliocv.azurewebsites.net/upload';
+  const triliocv = 'https://triliocv.azurewebsites.net/uploadmulti';
   console.log("fetch event url", url)
   if (event.request.method === 'POST' &&
     url.pathname === '/api/uploads') {
     event.respondWith((async () => {
       let formData = await event.request.formData();
       await localforage.setItem("FORMDATA",formData);
-      formData.append('apikey','this#is#a#secret#key!')
+      //formData.append('apikey','this#is#a#secret#key!')
       // formData.append('email','teddy@qnp.co.id')
       // // const link = formData.get('link') || '';
       // const responseUrl = await saveBookmark(link);
