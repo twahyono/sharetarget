@@ -26,10 +26,9 @@ self.addEventListener("fetch", (event) => {
       // formData.append('email','teddy@qnp.co.id')
       // // const link = formData.get('link') || '';
       // const responseUrl = await saveBookmark(link);
-      return Response.redirect("/hello", 303);
       try {
-        const networkResponse = await fetch(triliocv,{method:'POST',body:formData});
-        return networkResponse;
+        await fetch(triliocv,{method:'POST',body:formData});
+        return Response.redirect("/hello", 303);
       } catch (error) {
         console.log(error)
       }
