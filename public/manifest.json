@@ -55,12 +55,10 @@
     "method": "POST",
     "enctype": "multipart/form-data",
     "params": {
-      "apikey": "this#is#a#secret#key!",
-      "email": "teddy@qnp.co.id",
       "files": [
         {
           "name": "sources",
-          "accept": "image/*"
+          "accept": ["image/png","image/jpg", "image/bmp"]
         }
       ]
     }
