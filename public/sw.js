@@ -38,43 +38,43 @@ self.addEventListener("fetch", (event) => {
         console.log(error)
       }
     })());
-  }
-  if (
-    event.request.mode === "navigate" ||
-    (event.request.method === "GET" &&
-      event.request.headers.get("accept").includes("text/html"))
-  ) {
-    console.info("navigate to ", event.request.url);
-    event.respondWith(
-      (async () => {
-        try {
-          // First, try to use the navigation preload response if it's supported.
-          const preloadResponse = await event.preloadResponse;
-          if (preloadResponse) {
-            console.info("preload response to ", event.request.url);
-            return preloadResponse;
+  } else
+    if (
+      event.request.mode === "navigate" ||
+      (event.request.method === "GET" &&
+        event.request.headers.get("accept").includes("text/html"))
+    ) {
+      console.info("navigate to ", event.request.url);
+      event.respondWith(
+        (async () => {
+          try {
+            // First, try to use the navigation preload response if it's supported.
+            const preloadResponse = await event.preloadResponse;
+            if (preloadResponse) {
+              console.info("preload response to ", event.request.url);
+              return preloadResponse;
+            }
+
+            // Always try the network first.
+            const networkResponse = await fetch(event.request);
+            return networkResponse;
+          } catch (error) {
+            // catch is only triggered if an exception is thrown, which is likely
+            // due to a network error.
+            // If fetch() returns a valid HTTP response with a response code in
+            // the 4xx or 5xx range, the catch() will NOT be called.
+            console.info("Fetch failed; returning offline page instead.", error);
+
+            const lang = await localforage.getItem("language");
+            const cache = await caches.open(CACHE_NAME);
+            const cachedResponse = await cache.match(
+              lang === "id-ID" ? OFFLINE_URL : OFFLINE_URL_EN
+            );
+            return cachedResponse;
           }
-
-          // Always try the network first.
-          const networkResponse = await fetch(event.request);
-          return networkResponse;
-        } catch (error) {
-          // catch is only triggered if an exception is thrown, which is likely
-          // due to a network error.
-          // If fetch() returns a valid HTTP response with a response code in
-          // the 4xx or 5xx range, the catch() will NOT be called.
-          console.info("Fetch failed; returning offline page instead.", error);
-
-          const lang = await localforage.getItem("language");
-          const cache = await caches.open(CACHE_NAME);
-          const cachedResponse = await cache.match(
-            lang === "id-ID" ? OFFLINE_URL : OFFLINE_URL_EN
-          );
-          return cachedResponse;
-        }
-      })()
-    );
-  }
+        })()
+      );
+    }
 
   if (event.request.mode === "no-cors")
     // if it fetch only for static files
